@@ -42,6 +42,17 @@ namespace CSharpMortgage2.Controllers
             return View(loan);
         }
 
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public IActionResult App(Loan loan)
+        {
+            //calculate the loan
+
+            return View(loan);
+        }
+
+
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
