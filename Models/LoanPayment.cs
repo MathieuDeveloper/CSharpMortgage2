@@ -11,7 +11,7 @@ namespace CSharpMortgage2.Models
         public decimal Payment { get; set; }
         public decimal MonthlyPrincipal { get; set; }
         public decimal MonthlyInterest { get; set; }
-        public decimal TotalInterset { get; set; }
+        public decimal TotalInterest { get; set; }
         public decimal Balance { get; set; }
     }
 }
