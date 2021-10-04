@@ -30,7 +30,7 @@
                 <p>Your Monthly Payments</p>
             </div>
             <p id="payment">
-                @Model.Payment.ToString() €
+                @Model.Payment.ToString("C")
             </p>
 
 
@@ -39,7 +39,7 @@
                     <label class="text-start">Total Principal</label>
                 </div>
                 <div class="col-6 text-end" id="totalPrincipal">
-                    @Model.Amount.ToString()
+                    @Model.Amount.ToString("C")
                 </div>
             </div>
             <div class="row">
@@ -47,7 +47,7 @@
                     <label class="text-start">Total Interest</label>
                 </div>
                 <div class="col-6 text-end" id="totalInterest">
-                    @Model.TotalInterest.ToString()
+                    @Model.TotalInterest.ToString("C")
                 </div>
             </div>
             <div class="row">
@@ -55,7 +55,7 @@
                     <label class="text-start">Total Cost</label>
                 </div>
                 <div class="col-6 text-end" id="totalCost">
-                    @Model.TotalCost.ToString()
+                    @Model.TotalCost.ToString("C")
                 </div>
             </div>
         </div>
@@ -83,11 +83,11 @@
                     {
                         <tr>
                             <td>@item.Month</td>
-                            <td>@item.Payment</td>
-                            <td>@item.MonthlyPrincipal</td>
-                            <td>@item.MonthlyInterest</td>
-                            <td>@item.TotalInterest</td>
-                            <td>@item.Balance</td>
+                            <td>@item.Payment.ToString("C")</td>
+                            <td>@item.MonthlyPrincipal.ToString("C")</td>
+                            <td>@item.MonthlyInterest.ToString("C")</td>
+                            <td>@item.TotalInterest.ToString("C"))</td>
+                            <td>@item.Balance.ToString("C")</td>
                         </tr>
                     }
                 </tbody>

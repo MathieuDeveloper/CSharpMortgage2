@@ -20,13 +20,29 @@ namespace CSharpMortgage2.Helpers
             var monthlyPrincipal = 0.0m;
             var monthlyRate = CalcMonthlyRate(loan.Rate);
             //Calculate a payement schedule
-            for (int i = 0; i < length; i++)
+            for (int month = 1; month <= loan.Term; month++)
             {
+                monthlyInterest = CalcMonthlyInterest(balance, monthlyRate);
+                totalInterest += monthlyInterest;
+                monthlyPrincipal = loan.Payment - monthlyInterest;
+                balance -= monthlyPrincipal;
+
+                LoanPayment loanPayment = new();
+                loanPayment.Month = month;
+                loanPayment.Payment = loan.Payment;
+                loanPayment.MonthlyPrincipal = monthlyPrincipal;
+                loanPayment.MonthlyInterest = monthlyInterest;
+                loanPayment.TotalInterest = totalInterest;
+                loanPayment.Balance = balance;
+
+                //Push the object into the loan model
+                loan.Payments.Add(loanPayment);
 
             }
-            //Push payments in the loan
+            loan.TotalInterest = totalInterest;
+            loan.TotalCost = loan.Amount + totalInterest;
 
-            //return the loan to the veiw
+                        //return the loan to the veiw
 
             return loan;
         }
@@ -45,6 +61,11 @@ namespace CSharpMortgage2.Helpers
         private decimal CalcMonthlyRate(decimal rate)
         {
             return rate / 1200;
+        }
+
+        private decimal CalcMonthlyInterest(decimal balance, decimal monthlyRate)
+        {
+            return balance * monthlyRate;
         }
 
     }
